@@ -1,0 +1,40 @@
+
+#info{
+	float:right;
+}
+
+#report{
+	float:right;
+}
+.etc{
+	
+	margin:10px 10px 10px 10px;
+}
+
+#menubar{
+	float:right;
+}
+
+.comment-img{
+	float:left;
+	width:50px;
+	height:50px;
+
+}
+
+.btn{
+	position:relative;
+}
+
+
+
+
+
+
+
+#commentForm:placeholder{
+	text-align:center;
+}
+
+
+

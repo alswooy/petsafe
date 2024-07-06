@@ -1,0 +1,167 @@
+/*��Ʈ*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+
+html{
+	font-family: 'Noto Sans KR', 'Nanum Gothic', sans-serif;
+	margin:0 300px 0 300px;
+}
+
+.message{
+	margin-left:220px;
+	margin-bottom:10px;
+	font-weight:bold;
+	font-size: 15px;
+	display: block;
+	text-indent: -380px;
+}
+
+
+.input_box_check {
+    width: 300px;
+    height: 40px;
+    background-color: #FFFFFF;
+    border: 1.5px solid #d6d9d3;
+    border-radius: 5px;
+    padding: 3px 3px 2px 7px;
+    box-sizing: border-box;
+}
+
+.input_box {
+    width: 300px;
+    height: 40px;
+    background-color: #FFFFFF;
+    border: 1.5px solid #d6d9d3;
+    border-radius: 5px;
+    padding: 3px 3px 2px 7px;
+    box-sizing: border-box;
+    margin-bottom:20px;
+}
+
+
+
+
+ #phoneButton, #idError, #sendMessage {
+  height: 40px;
+  width: 70px;
+ }
+ 
+
+ .line-title{
+ 	font-weight:bold;
+	font-size: 15px;
+	width:300px;
+ }
+ 
+
+
+#choice{
+	margin-left:75px;
+	
+	font-weight:bold;
+	font-size: 15px;
+	display: block;
+	text-indent: -380px;
+	display:flex;
+	color: #bebebe;
+	
+}
+#one{
+	margin-left:65px;
+}
+
+#signUpButton {
+ 
+ text-transform: uppercase;
+  outline: 0;
+  background: #FFFFFF;
+ width: 310px;
+  border: 0;
+  padding: 15px;
+  color: black;
+  font-size: 17px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  border-color:  #FFE699;
+  border-style:solid;
+  border-top-width: medium;
+  border-bottom-width: medium;
+  border-left-width: medium;
+  border-right-width: medium;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+
+#bottom{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.writeBt1 {
+  background : #d1cec3;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  width: 300px;
+  border: 0;
+  padding: 15px;
+  color: black;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  border:none;
+  font-weight: bold;
+  margin-top: 10px;
+  border-radius: 5px;
+
+}
+
+
+.writeBt3{
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  width: 300px;
+  border: 0;
+  padding: 15px;
+  color: black;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  background:  #FFECB3;
+  border:none;
+  font-weight: bold;
+  margin-top: 20px;
+  border-radius: 5px;
+	}
+	
+.NicknameCheckMsg, .idCheckMsg{
+	margin-bottom:20px;
+	font-weight: bold;
+	width: 300px;
+}
+
+
+/* join*/
+
+
+.form {
+  width:500px;
+	display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #FFFFFF;
+  padding: 45px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.content{
+	display: flex;
+    justify-content: center;
+}
+

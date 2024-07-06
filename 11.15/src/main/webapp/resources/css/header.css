@@ -1,0 +1,170 @@
+/*폰트*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+
+html{
+	font-family: 'Noto Sans KR', sans-serif;
+	margin:0 300px 0 300px;
+}
+
+#nav{
+	list-style:none;
+	height:44px;
+	margin:0 0 4% 0;
+	background:#FFE699;
+	padding:0;
+}
+#nav li{
+	position:relative;
+	margin:0;
+	padding:0;
+	text-align:center;
+	font-size:18px;
+}
+#nav li a{
+	display:block;
+	height:28px;
+	padding:8px 8px;
+	margin:0;
+	color:#7e7e7e;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+#nav li:hover ul{
+	opacity:1;
+	background:#ffeebb;
+}
+#nav li:hover ul li{
+	height:40px;
+	font-size:16px;
+	overflow:visible;
+	padding:0;
+
+}
+#nav li:hover>a{
+	background:#ffd984;
+	font-weight:bold;
+	color:black;
+	margin:0;
+}
+
+#nav ul{
+	list-style:none;
+	margin:0;
+	padding:0;
+	position:absolute;
+	left:0;
+	top:44px;
+	width:216px;
+	background:#fff6dd;
+	text-align:center;
+	opacity:0;
+}
+#nav ul li{
+	float:none;
+	margin:0;
+	padding:0;
+	font-size:6px;
+}
+#nav ul a{
+	font-weight:normal;
+	color:grey;
+}
+
+
+/*메인메뉴 바 부분*/
+.main-menu li{
+	position: relative;
+	z-index: 2;
+	float:left;
+	position:relative;
+	padding:0;
+}
+.menu-title { 
+	width: 200px;
+	height: 60px;
+	color: black;
+	text-decoration: none;
+}
+.menu-title :hover{
+	background:#ffd984;
+}
+
+
+/*UserMenu(로그인, 회원가입)*/
+.UserMenu{ 
+	float:right;
+	display: flex;
+}
+.UserMenu-sub {
+    width: 100px;
+   	height: 60px;
+    font-size: 16px;
+    font-weight: bold;     
+    text-decoration: none;
+    color: black;
+}
+.UserMenu-sub :hover{
+	background: #ffd984;
+}
+
+
+
+/*검색 부분*/
+#searchForm {	
+	position: relative;
+    border: 0px;
+    background-color: #EEEEEE;
+    border-radius: 25px;
+    margin: 30px 20px 20px 0;
+	width: 500px;
+	height: 48px;
+}
+#searchForm input{
+	font-family:'Noto Sans KR';
+	position: absolute;
+	margin:2px 0 10px 3%;
+	top: 22%;
+    width: 78%;
+    border: none;
+    outline: none;
+    background-color: #EEEEEE;
+}
+.searchForm-btn { 
+    margin-left: 15px;
+    margin-top: 14px;
+    width: 25px;
+    height: 25px;
+    border: none;
+    outline: none;
+    object-fit: contain;
+}
+.searchForm-delbtn{
+    margin: 0 0 10px 83%;
+    width: 20px;
+    height: 20px;
+    border: none;
+    outline: none;
+    object-fit: contain;
+}
+
+
+/*로고*/
+.header-logo{
+    object-fit: contain;
+    margin-right: 30px;
+}
+
+
+
+/*header 최상단(로고,검색,로그인)*/
+#header-top {			
+    max-width: 1500px;
+    padding: 40px 0 0 0;
+    margin: 0 auto;
+	display: flex;
+	justify-content: flex-start;
+	height: 120px;
+	border-bottom: 1px solid #DDDDDD;
+}

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pet.doc.mapper.PetMapper">
+
+
+
+	<select id="getPetList" parameterType="PetVO" resultType="PetVO" > 
+	  	SELECT pno, userId, petName, to_char(petBirthday, 'yyyy-MM-dd') as petBirthday, petType, petMemo, petSex
+	    FROM   pet_petmember
+	  	where userId = #{userId}
+	  	order by pno desc
+	  
+	</select>
+	
+	
+	
+ <!-- 글조회 -->
+	 <select id="getArticle" resultType="PetVO">                                       
+       SELECT  pno, userId, petName, to_char(petBirthday, 'yyyy-MM-dd') as petBirthday, petType, petMemo, petSex
+        FROM   pet_petmember
+        WHERE  pno = #{pno}
+ 	</select>
+ 	
+ 	
+ 	<!-- 글저장 -->
+	<insert id="writeArticle" keyProperty="pno">
+	    <selectKey keyProperty="pno" resultType="int" order="BEFORE">  
+	        SELECT COALESCE(MAX(pno), 0) + 1 AS pno 
+	        FROM   pet_petmember
+	    </selectKey>
+	    
+	
+	 
+	    INSERT INTO pet_petmember (pno, userId, petName,  petBirthday , petType, petMemo, petSex, petImg) 
+	    VALUES ( #{pno}, #{userId, jdbcType=VARCHAR}, #{petName, jdbcType=VARCHAR},  #{petBirthday}, #{petType, jdbcType=VARCHAR}, #{petMemo, jdbcType=VARCHAR},  #{petSex},  #{petImg,  jdbcType=VARCHAR})
+	        
+	</insert>
+	
+
+ 	
+ 	<!-- 글 수정 -->
+ 	    <update id="updateArticle">
+        UPDATE  pet_petmember
+        SET  petName =  #{petName},
+        	 petBirthday = #{petBirthday},
+           	 petType =  #{petType},
+           	 petMemo = #{petMemo},
+           	 petSex = #{petSex}
+             
+   
+        WHERE  pno  = #{pno}
+    </update>
+     
+     <!-- 글삭제 -->
+    <delete id="deleteArticle">
+        DELETE  FROM  pet_petmember
+        WHERE  pno = #{pno}
+    </delete>
+    
+    
+    
+    </mapper>

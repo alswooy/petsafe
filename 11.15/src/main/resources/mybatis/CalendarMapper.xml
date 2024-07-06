@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pet.doc.mapper.CalendarMapper">
+
+   <select id="getCalendarList" parameterType="CalendarVO" resultType="CalendarVO" > 
+	  	SELECT cno, ctitle, to_char(regDate, '""MM"월 "DD"일"') as regDate, to_char(regDate,'""AM ""HH12"시 "MI"분"') as ctime, cmemo, rgb
+	    FROM   pet_calendar
+	  	where userId = #{userId} AND to_char(regDate, 'yyyy/mm/dd') = to_char(sysdate, 'yyyy/mm/dd')
+	  	order by regDate desc
+	  
+	</select>
+	
+	
+	
+   <select id="getTodayCalendarList" parameterType="CalendarVO" resultType="CalendarVO" > 
+	  	SELECT cno, ctitle, to_char(regDate, '""MM"월 "DD"일"') as regDate, to_char(regDate, '""AM ""HH12"시 "MI"분"') as ctime, cmemo, rgb
+	    FROM   pet_calendar
+	  	where userId = #{userId} AND to_char(regDate, 'yyyy-mm-dd') = to_Date(#{regDate}, 'yyyy-mm-dd')
+	  	order by regdate desc
+	  
+	</select>
+  
+  <!-- 글조회 -->
+	 <select id="getArticle" resultType="CalendarVO">                                       
+       SELECT  cno, ctitle, to_char(regDate, 'yyyy-MM-dd') as regDate, to_char(regDate,'HH24:mi:ss') as ctime, cmemo, rgb
+        FROM   pet_calendar
+        WHERE  cno = #{cno}
+ 	</select>
+ 	
+ 	
+ 	<!-- 글저장 -->
+	<insert id="writeArticle" keyProperty="cno">
+	    <selectKey keyProperty="cno" resultType="int" order="BEFORE">  
+	        SELECT COALESCE(MAX(cno), 0) + 1 AS cno 
+	        FROM   pet_calendar
+	    </selectKey>
+	    
+	   
+	 
+	    INSERT INTO pet_calendar (cno, userId, ctitle, regDate, cmemo, rgb) 
+	    VALUES ( #{cno}, #{userId, jdbcType=VARCHAR}, #{ctitle, jdbcType=VARCHAR},  #{regDate},  #{cmemo, jdbcType=VARCHAR}, #{rgb, jdbcType=VARCHAR})
+	        
+	</insert>
+	
+
+ 	
+ 	<!-- 글 수정 -->
+ 	    <update id="updateCalendar">
+        UPDATE  pet_calendar
+        SET  ctitle =  #{ctitle},
+         	 regDate = #{regDate},
+          	 cmemo =  #{cmemo}
+           
+        WHERE  cno  = #{cno}
+    </update>
+     
+     <!-- 글삭제 -->
+    <delete id="deleteCalendar">
+        DELETE  FROM  pet_calendar
+        WHERE  cno = #{cno}
+    </delete>
+    
+    </mapper>

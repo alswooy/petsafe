@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pet.doc.mapper.BoardMapper">
+
+   <select id="getBoardList"  parameterType="SearchVO" resultType="BoardVO" > 
+  
+	   SELECT  bno, title, writerNickname, replycnt, to_char(regdate, 'YY.MM.DD HH24:MI') as regdate, recommendcnt 
+	   FROM  (  SELECT ROWNUM AS rnum, a.* 
+				FROM   ( SELECT * FROM   pet_board  WHERE  del_yn='n'
+	            AND title like '%'||#{keyword}||'%' or  content like '%'||#{keyword}||'%' or writerNickname like '%'||#{keyword}||'%'         
+	            order by bno desc  ) a  
+	         ) 
+	   WHERE rnum  between #{startRow} and #{endRow} 
+    
+	</select>
+  
+  <!-- 글조회 -->
+	 <select id="getArticle" resultType="BoardVO">                                       
+       SELECT  bno , title, content, writerNickname, to_char(regDate, 'YYYY-MM-DD HH24:MI') regDate,
+                 replycnt, recommendcnt
+        FROM   pet_board
+        WHERE  bno = #{bno}
+ 	</select>
+ 	
+ 	
+ 	<!-- 글저장 -->
+	<insert id="writeArticle" keyProperty="bno">
+	    <selectKey keyProperty="bno" resultType="int" order="BEFORE">  
+	        SELECT COALESCE(MAX(bno), 0) + 1 AS bno 
+	        FROM   pet_board
+	    </selectKey>
+	 
+	    INSERT INTO pet_board (bno, title, content, writerNickname ) 
+	    VALUES ( #{bno}, #{title}, #{content}, #{writerNickname})
+	        
+	</insert>
+	
+
+ 	
+ 	<!-- 글 수정 -->
+ 	    <update id="updateArticle">
+        UPDATE  pet_board
+        SET  title =  #{title}, content = #{content}, writerNickname = #{writerNickname}
+        WHERE  bno  = #{bno}
+    </update>
+     
+     <!-- 글삭제 -->
+    <delete id="deleteArticle">
+        DELETE  FROM  pet_board
+        WHERE  bno = #{bno}
+    </delete>
+  
+ <!-- 전체글 수 조회 -->
+  <select id="getTotalRow" parameterType="SearchVO"  resultType="int">
+       SELECT count(*) AS totalrow 
+       FROM  pet_board  
+       WHERE del_yn='n' AND title like '%'||#{keyword}||'%' or  content like '%'||#{keyword}||'%' or writerNickname like '%'||#{keyword}||'%' 
+   </select>
+ 	
+	
+	
+    <!-- 좋아요 증가 -->
+    <update id="incrementGoodCnt">
+        UPDATE  pet_board
+        SET     recommendcnt = recommendcnt + 1
+        WHERE   bno  = #{bno}
+    </update>
+    
+
+	<!-- 댓글 수 증가 -->
+    <update id="incrementReplyCnt">
+        UPDATE  pet_board
+        SET     replycnt = replycnt + 1
+        WHERE   bno  = #{bno}
+    </update>
+    
+   	<!-- 댓글 수 감소 -->
+    <update id="decreaseReplyCnt">
+        UPDATE  pet_board
+        SET     replycnt = replycnt - 1
+        WHERE   bno  = #{bno}
+    </update>
+    
+    <!-- 댓글 목록 조회 -->
+     <select id="getReplyList" resultType="ReplyVO">                                       
+       SELECT  rno , bno, content, recommendcnt, to_char(regDate, 'YYYY-MM-DD HH24:MI') regDate, writerNickname
+        FROM   pet_reply
+        WHERE  bno = #{bno} and del_yn='n'
+ 	</select>
+ 	
+ 	<!-- 댓글조회 -->
+ 	<select id = "getReply" resultType ="ReplyVO">
+ 	SELECT rno, bno, content, writerNickname, regDate
+ 	FROM pet_reply
+ 	WHERE rno = #{rno}
+ 	</select>
+ 	
+ 	<!-- 댓글 저장 -->
+ 	<insert id="writeReply" keyProperty="rno">
+ 		<selectKey keyProperty="rno" resultType="int" order="BEFORE">
+ 		SELECT COALESCE(MAX(rno), 0) +1 AS rno
+ 		FROM pet_reply
+ 		</selectKey>
+ 		
+ 		INSERT INTO pet_reply ( rno, bno, content, writerNickname)
+ 		VALUES( #{rno}, #{bno}, #{content}, #{writerNickname})
+ 	</insert>
+ 	
+ 	<!-- 댓글 수정 -->
+ 	<update id="updateReply">
+ 		UPDATE pet_reply
+ 		SET content = #{content}, writerNickname = #{writerNickname}, regDate = #{regDate}
+ 		WHERE rno = #{rno}
+ 	</update>
+ 	
+ 	<!-- 댓글 삭제 -->
+ 	<delete id ="deleteReply">
+ 		DELETE FROM pet_reply
+ 		WHERE rno = #{rno}
+ 	</delete>
+ 	
+
+ 	
+ 	<!-- 원글에 소속된 댓글 전체 삭제 -->
+ 	<delete id = "deleteReplyBybno">
+ 		DELETE FROM pet_reply
+ 		WHERE bno = #{bno}
+ 	</delete>
+ 	
+ 	<!-- 댓글 좋아요 증가 -->
+ 	<update id ="incReplyGoodCnt">
+	 	UPDATE pet_reply
+	 	SET recommendcnt = recommendcnt + 1
+	 	WHERE rno = #{rno}
+ 	</update>
+ 	
+ 	<!-- 첨부파일 목록 조회 -->
+ 	<select id ="getFileList" resultType="AttFileVO">
+	 	SELECT fno, bno, ofilename, sfilename, filesize
+	 	FROM pet_file
+	 	WHERE bno = #{bno}
+ 	</select>
+ 	
+ 	<!-- 첨부파일 이름 조회 -->
+ 	<select id ="getFileName" resultType ="String" parameterType="int">
+ 		SELECT ofilename
+ 		FROM pet_file
+ 		WHERE fno = #{fno}
+ 	</select>
+
+	
+	
+	<!-- 첨부파일 저장 -->
+	<insert id="insertFile" keyProperty="fno">
+	   <selectKey keyProperty="fno" resultType="int" order="BEFORE">  
+	       SELECT COALESCE(MAX(fno), 0) + 1 AS fno  
+	       FROM   pet_file
+	   </selectKey>
+	 
+	   INSERT INTO pet_file (fno, bno, ofilename, sfilename, filesize )
+	       VALUES ( #{fno}, #{bno}, #{ofilename}, #{sfilename}, #{filesize})
+	</insert>
+	
+	
+ 	<!-- 첨부파일 삭제 -->
+ 	<delete id = "deleteFile">
+ 		DELETE FROM pet_file
+ 		WHERE fno = #{fno}
+ 	</delete>
+ 	
+ 	<!-- 원글에 소속된 첨부파일 전체 삭제 -->
+ 	<delete id = "deleteFileBybno">
+ 		DELETE FROM pet_file
+ 		WHERE bno = #{bno}
+ 	</delete>
+ 	
+ 	
+ 	<!-- 특정글 좋아요 기로ㅓㄱ 저장 -->
+ 	<insert id ="addBoardLike" keyProperty="blno">
+ 		<selectKey keyProperty="blno" resultType="int" order="BEFORE">
+ 			SELECT COALESCE(MAX(blno), 0) + 1 AS blno
+ 			FROM pet_boardlike
+ 		</selectKey>
+ 		
+ 		INSERT INTO pet_boardlike (blno, bno, nickname)
+ 		VALUES( #{blno}, #{bno}, #{nickname})
+ 	</insert>
+ 	
+ 	<select id = "getBoardLike" resultType="int">
+ 		SELECT COALESCE(MAX(bno), 0) AS bno
+ 		FROM pet_boardlike
+ 		WHERE nickname = #{nickname} AND bno = #{bno}
+ 	</select>
+ 	
+ 	<insert id = "addReplyLike" keyProperty="rlno">
+ 		<selectKey keyProperty="rlno" resultType = "int" order = "BEFORE">
+ 			SELECT COALESCE(MAX(rlno), 0) + 1 AS rlno
+ 			FROM pet_replylike
+ 		</selectKey>
+ 		INSERT INTO pet_replylike (rlno, rno, nickname)
+ 		VALUES( #{rlno}, #{rno}, #{nickname})
+ 	</insert>
+ 	
+ 	
+ 	<select id = "getReplyLike" resultType="int">
+ 	SELECT COALESCE(MAX(rno), 0) AS rno
+ 	FROM pet_replylike
+ 	WHERE nickname = #{nickname} AND rno = #{rno}
+ 	</select>
+ 	
+ 
+ 	
+	
+
+  
+
+
+</mapper>

@@ -1,0 +1,160 @@
+/*��Ʈ*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+html{
+	font-family: 'Noto Sans KR', sans-serif;
+	margin:0 300px 0 300px;
+}
+
+#row-svg{
+ 	margin: 4% 4% 0 4%;
+}
+
+#column-svg{
+ 	padding: 0 4% 0 0;
+}
+
+svg line{
+	stroke: #dddddd;
+}
+
+#content {			
+    max-width: 1500px;
+    padding: 40px 0 0 0;
+    margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	flex-direction:row;
+}
+
+p{
+	display: flex;
+	justify-content: center;
+	font-weight: bold;
+	font-size: 20px;
+	margin: 6% 0 6% 0;
+}
+
+.today-exercise{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.detail-text{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	font-size:14px;
+}
+
+.deco-text{
+	font-size:12px;
+	color:#7E7E7E;
+	margin:0 30% 0 0;
+}
+
+.today-walk{
+	font-weight:bold;
+}
+
+.exercise-gole{
+	display: flex;
+	flex-direction: row-reverse;
+	font-size:12px;
+	color:#7E7E7E;
+}
+
+progress{
+	width:300px;
+	height:45px;
+	appearance: none;
+}
+
+progress::-webkit-progress-bar{
+    background:#F2F2F2;
+    border-radius:50px;
+}
+progress::-webkit-progress-value {
+    border-radius:50px;
+    background: #ffd984;
+
+}
+
+.select-btn{
+	list-style: none;
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.select-btn li{
+	position:relative;
+	margin:0;
+	padding:0;
+	text-align:center;
+	font-size:18px;
+}
+
+.select-btn li a{
+	display:block;
+	height:28px;
+	padding:8px 8px;
+	margin:0;
+	color:#7e7e7e;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+.showSelect{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    margin:4% 0 0 0;
+}
+
+input[type='radio'] + label{
+	width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#7e7e7e;
+}
+
+input[type='radio']:checked + label{
+	background: #ffe699;
+	margin:10% 0 10% 0;
+	color:black;
+	font-weight: bold;
+}
+
+.statistics{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#bar-chart {
+  width: 500px;
+  height: 300px;
+  position: relative;
+}
+
+#bar-chart::before, #line-chart::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 240px;
+  height: 30px;
+  left: 155px;
+  top: 254px;
+  background: #FAFAFA;
+  box-shadow: 1px 1px 0 0 #DDD;
+}
+
+

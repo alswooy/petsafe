@@ -1,0 +1,153 @@
+/* Placeholder style (from http://stackoverflow.com/questions/2610497/change-an-inputs-html5-placeholder-color-with-css) */
+/* Placeholder style (from http://stackoverflow.com/questions/2610497/change-an-inputs-html5-placeholder-color-with-css) */
+/* Focus and hover on button */
+
+
+
+.form-5 button:hover span,
+.form-5 button:focus span {
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+    -webkit-transform: rotate(-90deg) translateY(-20px);
+    -moz-transform: rotate(-90deg) translateY(-20px);
+    -ms-transform: rotate(-90deg) translateY(-20px);
+    -o-transform: rotate(-90deg) translateY(-20px);
+    transform: rotate(-90deg) translateY(-20px);
+}
+
+.form-5 button:hover i,
+.form-5 button:focus i {
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    left: 0;
+    -webkit-transition-delay: 0.2s;
+    -moz-transition-delay: 0.2s;
+    -o-transition-delay: 0.2s;
+    -ms-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+
+/* Click on button */
+
+.form-5 button:active span,
+.form-5 button:active i {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none; 
+}
+
+.form-5 button:active span {
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+
+.form-5 button:active i {
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    left: 0;
+    color: #fff;
+}
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.login-page {
+  width: 500px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+
+
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 400px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form p {
+  margin: 0 0 0px;
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: ffffff;
+  width: 70%;
+  border: 0;
+  margin: 0 0 10px;
+  padding: 15px 15px 15px 8px;
+  box-sizing: border-box;
+  font-size: 14px;
+  border-bottom-width: thin;
+  border-style:solid;
+  border-color:  rgb(118, 118, 118);
+}
+.loginBtn {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #FFFFFF;
+  width: 70%;
+  border: 0;
+  padding: 15px;
+  color: black;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  background:  #FFECB3;
+  border:none;
+  font-weight: bold;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.loginBtn hover{
+  background: #FFE699;
+}
+
+
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+
+
+/*ȸ������ ���̵� ã�� ��й�ȣã��κ� */
+#ullog { 
+list-style-type:none; margin-left:5px; 
+padding:0;font-family: "Roboto", sans-serif;font-size:12px;
+text-decoration:none;
+}
+#lilog { 
+ display:inline; margin: 0px 0px 0px 0px;
+ padding:0 0 0 0;
+ border:1;
+font-family: "Roboto", sans-serif; font-size:12px;
+text-decoration:none;
+}
+#lilogb {
+ display:inline; margin: 0px 0px 0px 0px;
+ padding:0 0 0 0;
+ border:1;
+font-family: "Roboto", sans-serif; font-size:12px;
+text-decoration:none;
+}
+
+.msgCode{
+	font-weight:bold;
+	color:red;
+	font-size:16px;
+}
+
+

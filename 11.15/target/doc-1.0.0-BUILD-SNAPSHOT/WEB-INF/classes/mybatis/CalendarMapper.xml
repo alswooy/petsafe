@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pet.doc.mapper.CalendarMapper">
+
+   <select id="getCalendarList" parameterType="String" resultType="CalendarVO" > 
+	  	SELECT ctitle, to_char(regdate, '""MM"월 "DD"일"') as regdate, to_char(regdate, 'day') as week, to_char(regdate, 'HH24:HH12') as time, cmemo, rgb
+	    FROM   pet_calendar
+	  	where userId = #{userId}
+	  	order by cno desc
+	  
+	</select>
+  
+  <!-- 글조회 -->
+	 <select id="getArticle" resultType="CalendarVO">                                       
+       SELECT  *
+        FROM   pet_calendar
+        WHERE  cno = #{cno}
+ 	</select>
+ 	
+ 	
+ 	<!-- 글저장 -->
+	<insert id="writeArticle" keyProperty="cno">
+	    <selectKey keyProperty="cno" resultType="int" order="BEFORE">  
+	        SELECT COALESCE(MAX(cno), 0) + 1 AS cno 
+	        FROM   pet_calendar
+	    </selectKey>
+	 
+	    INSERT INTO pet_calendar (cno, userId, ctitle, regDate, cday, cmemo, rgb) 
+	    VALUES ( #{cno}, #{userId}, #{ctitle}, #{regDate}, #{cday},#{cmemo}, #{rgb})
+	        
+	</insert>
+	
+
+ 	
+ 	<!-- 글 수정 -->
+ 	    <update id="updateArticle">
+        UPDATE  pet_calendar
+        SET   userId =  #{userId}, ctitle =  #{ctitle}, regDate = #{regDate}, cday = #{cday}, cmemo =  #{cmemo}, rgb =  #{rgb}
+        WHERE  cno  = #{cno}
+    </update>
+     
+     <!-- 글삭제 -->
+    <delete id="deleteArticle">
+        DELETE  FROM  pet_calendar
+        WHERE  cno = #{cno}
+    </delete>
+    
+    </mapper>

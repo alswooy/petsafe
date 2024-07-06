@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pet.doc.mapper.ExerciseMapper">
+
+   <select id="getTodayExercise" parameterType="String" resultType="ExerciseVO" > 
+		select eno, userid, to_char(exdate, 'MM.DD') as exdate, NVL(walkcnt, 0) as walkcnt
+		FROM pet_exercise
+		where userId=#{userId} AND TO_CHAR(exdate,'yyyy/mm/dd')=TO_CHAR(sysdate,'yyyy/mm/dd')
+	</select>
+	
+	<insert id="writeExercise" parameterType="String" keyProperty="eno">
+	    <selectKey keyProperty="eno" resultType="int" order="BEFORE">  
+	        SELECT COALESCE(MAX(eno), 0) + 1 AS eno
+	        FROM   PET_EXERCISE
+	    </selectKey>
+	    
+	    INSERT INTO pet_exercise (eno, userId, exdate) 
+	    VALUES ( #{eno}, #{userId}, sysdate)
+	</insert>
+	
+
+  <!-- 글조회 -->
+	 <select id="getExerciseArticle" resultType="ExerciseVO">                                       
+       SELECT  *
+        FROM   pet_exercise
+        WHERE  eno = #{eno}
+ 	</select>
+	
+
+	<!-- 일주일 데이터 -->
+	<select id="getSevenData" parameterType="ExerciseVO" resultType="ExerciseVO" >
+		SELECT to_char(d.day, 'MM.DD') as exdate, NVL(p.walkcnt, 0) as walkcnt
+		FROM (SELECT * FROM PET_EXERCISE WHERE userId=#{userId}) p
+		RIGHT JOIN(SELECT TRUNC(SYSDATE-7) + level as day FROM dual CONNECT BY 8 > level) d
+		ON (to_char(d.day, 'MM.DD') = to_char(p.EXDATE, 'MM.DD'))
+		ORDER BY exdate
+	</select>
+	
+	<!-- 한달 데이터 -->
+	<select id="getMonthData" parameterType="ExerciseVO" resultType="ExerciseVO" >
+		SELECT to_char(d.day, 'MM.DD') as exdate, NVL(p.walkcnt, 0) as walkcnt
+		FROM (SELECT * FROM PET_EXERCISE WHERE userId=#{userId}) p
+		RIGHT JOIN(SELECT TRUNC(SYSDATE-30) + level as day FROM dual CONNECT BY 31 > level) d
+		ON (to_char(d.day, 'MM.DD') = to_char(p.EXDATE, 'MM.DD'))
+		ORDER BY exdate
+	</select>
+	
+	
+
+</mapper>

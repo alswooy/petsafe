@@ -1,0 +1,220 @@
+/*폰트*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+
+html{
+   font-family: 'Noto Sans KR', 'Nanum Gothic', sans-serif;
+   margin:0 300px 0 300px;
+}
+
+.mypage {
+  width: 900px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+
+.form {
+	position: relative;
+	z-index: 1;
+	background: #f8f8f6;
+	width: 900px;
+	height: auto;
+	margin: 0 auto 80px;
+	padding: 45px;
+	box-shadow: 5px 5px 5px gray;
+	display:flex;
+	flex-direction: row;
+}
+
+
+
+#a{
+	font-weight : bold;
+	font-size : 20px;
+	margin-bottom : 20px;
+}
+
+.input_box {
+    width: 300px;
+    height: 40px;
+    background-color: #FFFFFF;
+    border: 1.5px solid #d6d9d3;
+    border-radius: 5px;
+    padding: 3px 3px 2px 7px;
+    box-sizing: border-box;
+	
+}
+
+#petname {
+	width:120px;
+	margin-right:20px;
+}
+#petbirth {
+	width:120px;
+}
+
+#petkind {
+	width:120px;
+	margin-right:20px;
+}
+#petmemo {
+	width:120px;
+}
+
+
+#chpic, #del, #change{
+	width: 80px;
+	height: 30px;
+	border-radius: 10px;
+	border: none;
+	background:#dedede;
+	color: #767676;
+	font-weight : bold;
+}
+
+#male{
+    display: none;
+   
+}
+
+#female{
+    display: none;
+    margin-left: 100px;
+}
+
+.profile{
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width:200px;
+}
+
+.profile-button{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+
+
+.detail{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+
+#row-svg{
+    padding: 0% 5% 0% 5%;
+    
+}
+
+#row-svg line{
+   stroke:  #e0e0e0;
+}
+
+.save{
+    display: flex;
+    align-items: flex-end;
+    margin-left: auto;
+	justify-content: flex-end;
+}
+
+.addbtn {
+  
+
+  background:#FFE699;
+  width: 140px;
+  border: 0;
+  border-radius: 10px;
+  padding: 15px;
+  color: #767676;
+  font-weight:bold;
+  font-size: 17px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  
+
+}
+
+.add{
+ display:flex;
+ justify-content: center;
+
+}
+
+.toggle3{
+	width: 180px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.toggle3 input[type=radio]{
+    display: none;
+    max-width:20px;
+}
+.toggle3 input[type=radio] + label {
+    color: #e0e0e0;
+    font-size: 2em;
+    
+    
+}
+.toggle3 input[type=radio]:checked + label {
+    color: #fc9a2a;
+     
+}
+
+#phoneButton {
+	margin-left:10px;
+
+}
+
+/*테스트*/
+.detail-line{
+	display:flex;
+    padding: 20px 0 0 0;
+}
+
+.line-title, .line-title_s{
+	width:60px;
+	font-weight : bold;
+	text-align:center;
+	margin-right:8px;
+}
+
+.line-title_s{
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+}
+
+.line-text{
+border-bottom: 1px solid #dddddd;
+    padding: 0 10px 4px 4px;
+    width: 140px;
+}
+
+#edtBtn{
+	width: 80px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    background: #FFE699;
+    color: #767676;
+    font-weight: bold;
+    
+}
+
+#delBtn{
+	border:none;
+	background: #f8f8f6;
+	font-weight:bold;
+	
+}
+
+.NicknameCheckMsg{
+	margin-left:68px;
+	font-weight: bold;
+}

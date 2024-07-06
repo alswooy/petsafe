@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pet.doc.mapper.LoginMapper">
+
+	<select id="findUser" parameterType="UserVO" resultType="UserVO">
+       SELECT   userId, passwd, name,phone
+        FROM    pet_member 
+        WHERE   userId = #{userId} and passwd = #{passwd} and del_yn='n'
+    </select>
+
+
+	<select id="getUser" parameterType="String" resultType="UserVO">
+       SELECT   *
+        FROM    pet_member 
+        WHERE   userId = #{userId} and del_yn='n'
+    </select>
+
+
+    <insert id="insertUser" keyProperty="mno">
+        <selectKey keyProperty="mno" resultType="int" order="BEFORE">  
+            SELECT COALESCE(MAX(mno), 0) + 1 AS mno  
+            FROM   pet_member
+        </selectKey>
+        INSERT INTO pet_member (mno, userId, passwd, name, phone, nickname )
+        VALUES (#{mno}, #{userId}, #{passwd}, #{userId}, #{phone},  #{nickname} )
+    </insert>
+     
+     
+    <update id="updateUser" parameterType="UserVO">
+        UPDATE  pet_member 
+         SET 	nickname=#{nickname},phone=#{phone}
+        WHERE   userId  = #{userId} and del_yn='n'
+    </update>
+    
+    <select id="findId" parameterType="UserVO" resultType="UserVO">
+       SELECT   *
+        FROM    pet_member 
+        WHERE   name = #{name} and phone = #{phone} and del_yn='n'
+    </select>
+    
+    <select id="findPass" parameterType="UserVO" resultType="UserVO" >
+       SELECT   *
+        FROM    pet_member
+        WHERE   userId = #{userId} and phone = #{phone} and del_yn='n'
+    </select>
+    
+   <update id="updatePass" parameterType="UserVO">
+        UPDATE  pet_member 
+         SET 	passwd = #{passwd}
+        WHERE   userId  = #{userId} and del_yn='n' 
+    </update>
+    
+    <update id="deluser" parameterType="UserVO">
+        UPDATE  pet_member 
+        SET 	del_yn='y'
+        WHERE   userId  = #{userId} AND passwd=#{passwd} AND phone=#{phone}
+    </update>
+    
+    	
+	<!-- 목표운동량 가져오기 -->
+	<select id="getwalkobj" resultType="UserVO">
+		SELECT walkobj
+		FROM pet_member
+		where userId=#{userId}
+	</select>
+	
+	 <!-- 목표 수정 -->
+	<update id="objupdate" parameterType="UserVO" >
+		update pet_member
+		set walkobj=#{walkobj}
+		where userId=#{userId}
+      
+    </update>
+    
+	 
+   
+
+    
+   </mapper>
+    
+
