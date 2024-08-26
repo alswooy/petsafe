@@ -5,8 +5,9 @@
 
 개발환경 :
   - Tool : Wep - eclipse, App - android studio, IoT - Arduino
-  - Language : Spring, Java, HTML + CSS
-  - Server : Apache Tomcat, Jsp, Firebase
+  - Language : Java, HTML + CSS, JS
+  - Server : Apache Tomcat, Firebase
+  - framwork : Spring
   - Database : Oracle
 
  화면 구성 
